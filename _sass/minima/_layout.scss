@@ -184,39 +184,57 @@
   @include relative-font-size(2);
 }
 
-.post-list-heading {
+.project-list-heading {
   @include relative-font-size(1.75);
 }
 
-.post-list {
+.project-list {
+  display: grid;
+  grid-template-columns: auto auto;
   margin-left: 0;
   list-style: none;
 
   > li {
-    margin-bottom: $spacing-unit;
+    margin-right: $spacing-unit;
   }
 }
 
-.post-meta {
+@include media-query($on-palm) {
+  .project-list {
+    display: block;
+  }
+}
+
+.project-meta {
   font-size: $small-font-size;
   color: $grey-color;
 }
 
-.post-link {
+.project-link {
   display: block;
   @include relative-font-size(1.5);
+}
+
+.project-thumbnail {
+  width: 90%;
+  height: $content-width / 4;
+  margin-top: $spacing-unit / 2;
+  object-fit: cover;
+  object-position: 0% 0%;
+  border: $small-font-size / 2 solid lighten($grey-color, 25%);
+  border-radius: $small-font-size;
 }
 
 
 
 /**
- * Posts
+ * Projects
  */
-.post-header {
+.project-header {
   margin-bottom: $spacing-unit;
 }
 
-.post-title {
+.project-title {
   @include relative-font-size(2.625);
   letter-spacing: -1px;
   line-height: 1;
@@ -226,7 +244,13 @@
   }
 }
 
-.post-content {
+.project-repo {
+  > img {
+    width: $base-font-size * 2;
+  }
+}
+
+.project-content {
   margin-bottom: $spacing-unit;
 
   h2 {
