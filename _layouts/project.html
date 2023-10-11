@@ -15,7 +15,7 @@ github_logo: assets/images/github_PNG40.png
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
       {%- endif -%} -->
       {%- if page.repo -%}
-        <a class="project-repo p-repo" href="{{ page.repo }}" target="_blank"><img src="{{ site.github_logo | absolute_url }}">View on GitHub</a>
+        <a class="project-repo p-repo" href="{{ page.repo }}" target="_blank"><span>{% include icon-github.svg %} View on GitHub</span></a>
       {%- endif -%}
     </p>
   </header>

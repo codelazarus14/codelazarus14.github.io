@@ -245,8 +245,15 @@
 }
 
 .project-repo {
-  > img {
-    width: $base-font-size * 2;
+  > span {
+    display: flex;
+    align-items: center;
+    
+    svg {
+      margin-right: $spacing-unit / 4;
+      width: $base-font-size * 1.5;
+      height: $base-font-size * 1.5;
+    }
   }
 }
 
