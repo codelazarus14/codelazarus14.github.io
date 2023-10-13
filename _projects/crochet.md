@@ -3,26 +3,14 @@ title: Crochet Pattern Generator
 thumbnail: assets/images/crochetscreenshot.png
 repo: https://github.com/codelazarus14/crochet-pattern-js
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+![A screenshot of the Crochet Pattern Generator home page](../assets/images/crochet1.png)
 
-Jekyll requires blog post files to be named according to the following format:
+[Link to the website](https://codelazarus14.github.io/crochet-pattern-js/)
 
-`YEAR-MONTH-DAY-title.MARKUP`
+Some time around the spring of 2022 I rekindled an old hobby interest in crochet. It seemed like something fun, detail-oriented and easy to get into, and I enjoyed the process as much as the result. As I started to browse sites like [ravelry.com](https://www.ravelry.com/) for more patterns, I noticed that while many of them existed in easy-to-create portable formats, such as a page on the author's blog or a PDF. 
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+Much of the structure of each pattern varied quite a lot between authors. While sites like Ravelry have a useful variety of filters for finding patterns and favorite authors, the patterns themselves could be cumbersome to navigate when they used specific stitch combinations or unique naming schemes, causing the crocheter to have to flip back and forth between pages frequently to see where new terms had been defined or row combinations were referenced. 
 
-Jekyll also offers powerful support for code snippets:
+Initially I had the idea to write a custom file format and parser for crochet patterns in a less user-friendly scheme. This would have allowed for patterns composed of mostly plain text instructions to be encoded in a format more useful to people writing software that could display them. However, this would have put more burden on the author to be careful about syntax, not to mention limiting the potential audience to people who crochet and requiring someone (probably me) to have to write a GUI version in the future anyway.
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+So I took the shortcut of using JSON and the opportunity to learn more Javascript by creating a website to create and manage an offline store of patterns for the user. The website allows users to create patterns, preview and/or output their pattern data, and track their progress through each one in the same place. The website is entirely client-side as it is focused mostly on personal convenience rather than being a public collection.
