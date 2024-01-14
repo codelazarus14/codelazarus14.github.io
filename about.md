@@ -8,6 +8,6 @@ permalink: /about/
 
 This website is where I (Sam Catterall) keep a list of various projects I've worked on. 
 
-I've been making small experiments off and on since I first got into coding in high school. More recently, I've spent time exploring new frontiers like 3D rendering with OpenGL, Python chatbots, modding one of my favorite video games and creating websites.
+I've been making small experiments off and on since I first got into coding in high school. More recently, I've spent time exploring new frontiers like graphics programming, modding, and making video games.
 
 To find out more about what else I'm working on, you can visit my [GitHub](https://github.com/codelazarus14) or contact me at [codel1763@gmail.com]().
