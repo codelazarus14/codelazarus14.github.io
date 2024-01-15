@@ -42,7 +42,8 @@ defaults:
       path: ""
       type: "projects"
     values:
-      layout: "project" 
+      layout: "project"
+      featured: false
 
 # show_excerpts: true
 

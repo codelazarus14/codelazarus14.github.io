@@ -10,9 +10,31 @@ layout: default
   {{ content }}
 
   {%- if site.projects.size > 0 -%}
-    <h2 class="project-list-heading">{{ page.list_title | default: "Projects" }}</h2>
+    {%- assign featured = site.projects | where: "featured", true -%}
+    {%- assign not_featured = site.projects | where: "featured", false -%}
+    <h2 class="project-list-heading">{{ page.list_title | default: "Featured" }}</h2>
     <ul class="project-list">
-      {%- for project in site.projects -%}
+      {%- for project in featured -%}
+      <li>
+        <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="project-meta">{{ project.date | date: date_format }}</span> -->
+        <h3>
+          <a class="project-link" href="{{ project.url | relative_url }}">
+            {{ project.title | escape }}
+            {%- if project.thumbnail -%}
+            <img class="project-thumbnail" src="{{ project.thumbnail }}">
+            {%- endif -%}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ project.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+    <h2 class="project-list-heading">{{ page.list_title | default: "Other Projects" }}</h2>
+    <ul class="project-list">
+      {%- for project in not_featured -%}
       <li>
         <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="project-meta">{{ project.date | date: date_format }}</span> -->
