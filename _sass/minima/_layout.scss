@@ -178,6 +178,10 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1;
+  p img {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 .page-heading {
