@@ -2,6 +2,7 @@
 title: Crochet Pattern Generator
 thumbnail: assets/images/crochetscreenshot.png
 repo: https://github.com/codelazarus14/crochet-pattern-js
+featured: true
 ---
 ![A screenshot of the Crochet Pattern Generator home page](../assets/images/crochet1.png)
 
