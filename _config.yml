@@ -36,6 +36,8 @@ collections:
   projects:
     output: true
     permalink: /:collection/:title
+  posts:
+    permalink: blog/:categories/:year/:month/:day/:title/
 
 defaults:
   - scope:
