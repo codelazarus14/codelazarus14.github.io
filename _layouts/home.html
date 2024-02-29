@@ -13,7 +13,7 @@ layout: default
     {%- assign featured = site.projects | where: "featured", true -%}
     {%- assign not_featured = site.projects | where: "featured", false -%}
     <h2 class="page-list-heading">{{ page.list_title | default: "Featured" }}</h2>
-    <ul class="page-list">
+    <ul class="project-grid">
       {%- for project in featured -%}
       <li>
         <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -26,15 +26,12 @@ layout: default
             {%- endif -%}
           </a>
         </h3>
-        {%- if site.show_excerpts -%}
-          {{ project.excerpt }}
-        {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>
     <!-- TODO: non-featured section gets compressed into vertical list format? paginated? -->
     <h2 class="page-list-heading">{{ page.list_title | default: "Other Projects" }}</h2>
-    <ul class="page-list">
+    <ul class="project-grid">
       {%- for project in not_featured -%}
       <li>
         <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -47,9 +44,6 @@ layout: default
             {%- endif -%}
           </a>
         </h3>
-        {%- if site.show_excerpts -%}
-          {{ project.excerpt }}
-        {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>
