@@ -292,6 +292,7 @@
 */
 
 .post-list {
+  display: none;
   margin-left: 0;
   list-style: none;
 
@@ -300,7 +301,48 @@
   }
 }
 
+.post-list.curr-page {
+  display: block; 
+}
+
 .post-link {
   display: block;
   @include relative-font-size(1.5);
+}
+
+.post-list-nav {
+  display: flex;
+  justify-content: center;
+  
+  a:hover {
+    cursor: pointer;
+  }
+
+  // only affects previous/next buttons
+  > a:hover {
+    text-decoration: none;
+  }
+  
+  .previous-page {
+    margin-right: $spacing-unit;
+  }
+
+  .page-nav {
+    display: flex;
+    > a {
+      margin-right: $small-font-size;
+    }
+  }
+
+  .next-page {
+    margin-left: $spacing-unit - $small-font-size;
+  }
+
+  .disabled {
+    color: $text-color;
+  }
+  .disabled:hover {
+    text-decoration: none;
+    cursor: default;
+  }
 }

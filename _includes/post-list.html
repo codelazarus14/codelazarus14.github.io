@@ -1,0 +1,94 @@
+<ul class="post-list js-post-list">
+  {%- for post in site.posts -%}
+  <li>
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    <span class="post-meta">{{ post.date | date: date_format }}</span>
+    <h3>
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        {{ post.title | escape }}
+        {%- if post.thumbnail -%}
+        <img class="post-thumbnail" src="{{ post.thumbnail }}">
+        {%- endif -%}
+      </a>
+    </h3>
+    {%- if site.show_excerpts -%}
+      {{ post.excerpt }}
+    {%- endif -%}
+  </li>
+  {%- endfor -%}
+</ul>
+<ul class="paginated-list js-paginated"></ul>
+<div class="post-list-nav">
+  <a class="previous-page js-previous">&lt;</a>
+  <div class="page-nav js-page-nav"></div>
+  <a class="next-page js-next">&gt;</a>
+</div>
+<script>
+  (function (){
+    const PostsPerPage = 10;
+
+    const postList = document.querySelector('.js-post-list');
+    const postListPaginated = document.querySelector('.js-paginated');
+    const pageNav = document.querySelector('.js-page-nav');
+    const pageCount = Math.ceil(postList.childElementCount / PostsPerPage);
+
+    let page = 0;
+
+    const setCurrentPage = (newPage) => {
+      newPage = Math.min(Math.max(newPage, 0), pageCount-1);
+      postListPaginated.childNodes[page].classList.remove('curr-page');
+      postListPaginated.childNodes[newPage].classList.add('curr-page');
+      setDisabled(pageNav.childNodes[page], false);
+      setDisabled(pageNav.childNodes[newPage], true);
+      page = newPage;
+    };
+
+    const setDisabled = (pageNavElem, disabled) => {
+      pageNavElem.classList.toggle('disabled', disabled);
+    }
+
+    // skip pagination if not enough posts
+    if (pageCount < PostsPerPage) {
+      postList.classList.add('curr-page');
+      postListPaginated.remove();
+      pageNav.parentElement.remove();
+      return;
+    }
+
+    for (let i = 0; i < pageCount; i++) {
+      // create sub-lists for each page with 1..PostsPerPage posts
+      const pageElem = postList.cloneNode();
+      const pagePosts = Array.from(postList.childNodes).slice(0, PostsPerPage);
+
+      pagePosts.forEach(post => {
+        pageElem.appendChild(post);
+      });
+      postListPaginated.appendChild(pageElem);
+
+      // setup page nav
+
+      const pageNavElem = document.createElement('a');
+      pageNavElem.innerHTML = i + 1;
+      pageNavElem.addEventListener('click', () => {
+        setCurrentPage(i);
+      });
+      pageNav.appendChild(pageNavElem);
+    }
+
+    const prevPageElem = document.querySelector('.js-previous');
+    const nextPageElem = document.querySelector('.js-next');
+
+    prevPageElem.addEventListener('click', () => {
+      setCurrentPage(page - 1);
+    });
+    nextPageElem.addEventListener('click', () => {
+      setCurrentPage(page + 1);
+    });
+
+
+    // init with first page
+    setCurrentPage(0);
+
+    
+  })();
+</script>
