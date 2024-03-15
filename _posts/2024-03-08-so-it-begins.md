@@ -14,24 +14,24 @@ It's been kind of fun picking up more skills in game development and fitting all
 
 Here's a few screenshots of the work so far:
 
-![A screenshot of the inventory user interface.](/../assets/images/blog/inventory.png)
+![A screenshot of the inventory user interface.](/../assets/images/blog/0001/inventory.png)
 
 I don't know exactly what kind of inventory system I plan on using yet but I've settled on letting the player carry two things at once in their left and right hand. It's just a normal grid-based thing for now with no System Shock tesselating or anything. I added and then turned off stacking, since I don't want to encourage hoarding of anything you can't fit in a pocket (up to some reasonable amount).
 
-![A screenshot of the habitat interior, an empty white shell with a few boxes representing text logs and storage containers.](/../assets/images/blog/interior.png)
+![A screenshot of the habitat interior, an empty white shell with a few boxes representing text logs and storage containers.](/../assets/images/blog/0001/interior.png)
 
 Home sweet home.
 
-![A screenshot of the airlock interior as it fills with water during pressurization, the water level is almost even with the player's eyes.](/../assets/images/blog/airlock.png)
+![A screenshot of the airlock interior as it fills with water during pressurization, the water level is almost even with the player's eyes.](/../assets/images/blog/0001/airlock.png)
 
 It's hard to see but the rectangle in the back is the placeholder pressure suit station, for whatever I plan on doing with it beyond using it as a coat rack. Not wearing the pressure suit while the airlock fills with water is currently fatal.
 
-![A screenshot of the player welding with a stick electrode, with the far end lit by a bright light and emitting sparks. The weld puddle is followed by a trail of red discs representing the welded seam.](/../assets/images/blog/welding.png)
+![A screenshot of the player welding with a stick electrode, with the far end lit by a bright light and emitting sparks. The weld puddle is followed by a trail of red discs representing the welded seam.](/../assets/images/blog/0001/welding.png)
 
 Welding is the only repair mechanic I've worked on so far since it seemed to be the most complex, so naturally I threw myself into it. I've been working on the basics of following a seam with the mouse, just to have a little bit more realism than the usual magic healing torch I've seen in games. Along with the many fun ways of dying and sustaining injury, I hope on incorporating temporary blindness from welding without a mask (as seen above).
 
-![A screenshot of the player outside the base with the handheld sonar item. The base is visible clearly in the sonar display, while the player's vision is partly obscured by the darkness.](/../assets/images/blog/sonar1.png)
+![A screenshot of the player outside the base with the handheld sonar item. The base is visible clearly in the sonar display, while the player's vision is partly obscured by the darkness.](/../assets/images/blog/0001/sonar1.png)
 
-![Another screenshot of the player with the handheld sonar. The player's vision is almost entirely obscured by darkness, while the sonar screen reveals a small path of floating cubes extending outward from their position.](/../assets/images/blog/sonar2.png)
+![Another screenshot of the player with the handheld sonar. The player's vision is almost entirely obscured by darkness, while the sonar screen reveals a small path of floating cubes extending outward from their position.](/../assets/images/blog/0001/sonar2.png)
 
 The strange object with the fuzzy display is meant to be a handheld sonar which I threw together in Blender to test viewmodels. I really like the potential of the mechanic and feel like it'll be worth making this into a limited resource (battery-powered?) or turn it into a passive sonar. I plan on putting one setup in front of the player's base, hooked up to a display inside rather than adding windows, since the player's environment will also be relatively low-light in keeping with their acclimation to the abyssal environment.
