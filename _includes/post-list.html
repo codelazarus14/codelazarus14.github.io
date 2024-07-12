@@ -48,45 +48,47 @@
       pageNavElem.classList.toggle('disabled', disabled);
     }
 
-    // skip pagination if not enough posts
-    if (postCount < PostsPerPage) {
-      postList.classList.add('curr-page');
-      postListPaginated.remove();
-      pageNav.parentElement.remove();
-      return;
+    const paginateList = () => {
+      // skip pagination if not enough posts
+      if (postCount < PostsPerPage) {
+        postList.classList.add('curr-page');
+        postListPaginated.remove();
+        pageNav.parentElement.remove();
+        return;
+      }
+
+      for (let i = 0; i < pageCount; i++) {
+        // create sub-lists for each page with 1..PostsPerPage posts
+        const pageElem = postList.cloneNode();
+        const pagePosts = Array.from(postList.childNodes).slice(0, PostsPerPage);
+
+        pagePosts.forEach(post => {
+          pageElem.appendChild(post);
+        });
+        postListPaginated.appendChild(pageElem);
+
+        // setup page nav
+
+        const pageNavElem = document.createElement('a');
+        pageNavElem.innerHTML = i + 1;
+        pageNavElem.addEventListener('click', () => {
+          setCurrentPage(i);
+        });
+        pageNav.appendChild(pageNavElem);
+      }
+
+      const prevPageElem = document.querySelector('.js-previous');
+      const nextPageElem = document.querySelector('.js-next');
+
+      prevPageElem.addEventListener('click', () => {
+        setCurrentPage(page - 1);
+      });
+      nextPageElem.addEventListener('click', () => {
+        setCurrentPage(page + 1);
+      });
     }
 
-    for (let i = 0; i < pageCount; i++) {
-      // create sub-lists for each page with 1..PostsPerPage posts
-      const pageElem = postList.cloneNode();
-      const pagePosts = Array.from(postList.childNodes).slice(0, PostsPerPage);
-
-      pagePosts.forEach(post => {
-        pageElem.appendChild(post);
-      });
-      postListPaginated.appendChild(pageElem);
-
-      // setup page nav
-
-      const pageNavElem = document.createElement('a');
-      pageNavElem.innerHTML = i + 1;
-      pageNavElem.addEventListener('click', () => {
-        setCurrentPage(i);
-      });
-      pageNav.appendChild(pageNavElem);
-    }
-
-    const prevPageElem = document.querySelector('.js-previous');
-    const nextPageElem = document.querySelector('.js-next');
-
-    prevPageElem.addEventListener('click', () => {
-      setCurrentPage(page - 1);
-    });
-    nextPageElem.addEventListener('click', () => {
-      setCurrentPage(page + 1);
-    });
-
-
+    paginateList();
     // init with first page
     setCurrentPage(0);
 
