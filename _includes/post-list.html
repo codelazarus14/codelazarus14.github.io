@@ -23,18 +23,24 @@
   <div class="page-nav js-page-nav"></div>
   <a class="next-page js-next">&gt;</a>
 </div>
+<form class="post-list-settings js-post-list-settings">
+  <input type="number" min="1" max="20" id="posts-per-page">
+  <label for="posts-per-page">posts per page</label>
+</form>
 <script>
   (function (){
-    const PostsPerPage = 10;
-
     const postList = document.querySelector('.js-post-list');
     const postListPaginated = document.querySelector('.js-paginated');
     const pageNav = document.querySelector('.js-page-nav');
+    const prevPageElem = document.querySelector('.js-previous');
+    const nextPageElem = document.querySelector('.js-next');
+    const postsPerPageForm = document.querySelector('.js-post-list-settings')
+    const postsPerPageInput = postsPerPageForm.firstElementChild;
+
     const postCount = postList.childElementCount;
-    const pageCount = Math.ceil(postCount / PostsPerPage);
-
-    let page = 0;
-
+    
+    let page = 0, pageCount, postsPerPage;
+    
     const setCurrentPage = (newPage) => {
       newPage = Math.min(Math.max(newPage, 0), pageCount-1);
       postListPaginated.childNodes[page].classList.remove('curr-page');
@@ -44,26 +50,50 @@
       page = newPage;
     };
 
+    const setPostsPerPage = (value) => {
+      postsPerPage = value;
+      pageCount = Math.ceil(postCount / postsPerPage);
+      paginateList(pageCount, postsPerPage);
+      page = 0;
+      setCurrentPage(page);
+    }
+    
     const setDisabled = (pageNavElem, disabled) => {
       pageNavElem.classList.toggle('disabled', disabled);
     }
 
-    const paginateList = () => {
-      // skip pagination if not enough posts
-      if (postCount < PostsPerPage) {
-        postList.classList.add('curr-page');
-        postListPaginated.remove();
-        pageNav.parentElement.remove();
-        return;
+    const addNavButtonListeners = (leftButton, rightButton) =>{
+      leftButton.addEventListener('click', () => {
+        setCurrentPage(page - 1);
+      });
+      rightButton.addEventListener('click', () => {
+        setCurrentPage(page + 1);
+      });
+    }
+
+    const addPostsPerPageFormListener = (form, input) => {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        setPostsPerPage(input.value)
+      });
+    }
+
+    const paginateList = (pages, perPage) => {
+      // clear post lists and page nav
+      while (postListPaginated.firstChild) {
+        postListPaginated.removeChild(postListPaginated.lastChild);
+      }
+      while (pageNav.firstChild) {
+        pageNav.removeChild(pageNav.lastChild);
       }
 
-      for (let i = 0; i < pageCount; i++) {
+      for (let i = 0; i < pages; i++) {
         // create sub-lists for each page with 1..PostsPerPage posts
-        const pageElem = postList.cloneNode();
-        const pagePosts = Array.from(postList.childNodes).slice(0, PostsPerPage);
+        const pageElem = postList.cloneNode(); // shallow copy, no children
+        const pagePosts = Array.from(postList.childNodes).slice(i * perPage, (i+1) * perPage);
 
         pagePosts.forEach(post => {
-          pageElem.appendChild(post);
+          pageElem.appendChild(post.cloneNode(true));
         });
         postListPaginated.appendChild(pageElem);
 
@@ -76,21 +106,15 @@
         });
         pageNav.appendChild(pageNavElem);
       }
-
-      const prevPageElem = document.querySelector('.js-previous');
-      const nextPageElem = document.querySelector('.js-next');
-
-      prevPageElem.addEventListener('click', () => {
-        setCurrentPage(page - 1);
-      });
-      nextPageElem.addEventListener('click', () => {
-        setCurrentPage(page + 1);
-      });
     }
 
-    paginateList();
+    setPostsPerPage(10);
+    postsPerPageInput.value = postsPerPage;
     // init with first page
     setCurrentPage(0);
+
+    addPostsPerPageFormListener(postsPerPageForm, postsPerPageInput);
+    addNavButtonListeners(prevPageElem, nextPageElem);
 
     
   })();
