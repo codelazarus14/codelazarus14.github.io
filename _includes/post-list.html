@@ -25,13 +25,13 @@
 </div>
 <script>
   (function (){
-    // TODO: fix this
     const PostsPerPage = 10;
 
     const postList = document.querySelector('.js-post-list');
     const postListPaginated = document.querySelector('.js-paginated');
     const pageNav = document.querySelector('.js-page-nav');
-    const pageCount = Math.ceil(postList.childElementCount / PostsPerPage);
+    const postCount = postList.childElementCount;
+    const pageCount = Math.ceil(postCount / PostsPerPage);
 
     let page = 0;
 
@@ -49,7 +49,7 @@
     }
 
     // skip pagination if not enough posts
-    if (pageCount < PostsPerPage) {
+    if (postCount < PostsPerPage) {
       postList.classList.add('curr-page');
       postListPaginated.remove();
       pageNav.parentElement.remove();
