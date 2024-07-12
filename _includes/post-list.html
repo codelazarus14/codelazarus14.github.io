@@ -23,10 +23,12 @@
   <div class="page-nav js-page-nav"></div>
   <a class="next-page js-next">&gt;</a>
 </div>
-<form class="post-list-settings js-post-list-settings">
-  <input type="number" min="1" max="20" id="posts-per-page">
-  <label for="posts-per-page">posts per page</label>
-</form>
+<div class="post-list-settings js-post-list-settings">
+  <form>
+    <input class="js-posts-per-page" type="number" min="1" max="20" id="posts-per-page">
+    <label for="posts-per-page">posts per page</label>
+  </form>
+</div>
 <script>
   (function (){
     const postList = document.querySelector('.js-post-list');
@@ -35,7 +37,7 @@
     const prevPageElem = document.querySelector('.js-previous');
     const nextPageElem = document.querySelector('.js-next');
     const postsPerPageForm = document.querySelector('.js-post-list-settings')
-    const postsPerPageInput = postsPerPageForm.firstElementChild;
+    const postsPerPageInput = postsPerPageForm.querySelector('.js-posts-per-page');
 
     const postCount = postList.childElementCount;
     

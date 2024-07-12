@@ -346,3 +346,14 @@
     cursor: default;
   }
 }
+
+.post-list-settings {
+  display: flex;
+  justify-content: center;
+  margin-top: $small-font-size / 2;
+
+  input {
+    margin-right: $small-font-size;
+    width: $spacing-unit * 1.5;
+  }
+}
