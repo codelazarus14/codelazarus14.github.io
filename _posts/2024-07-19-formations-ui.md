@@ -1,0 +1,17 @@
+---
+title: Formations and HUD Updates
+---
+
+Since adding unit detection last week, I've been trying to augment the pathfinding system with more features, and the first iterations of unit formations and unit avoidance based on actual pathfinding data have come into existence. Combat got some minor tweaks like adding a frame/animation delay, currently unused without any ranged units to test it on, and I've been leaning more into improving the HUD.
+
+Pathfinding now takes into account a list of occupied positions, dynamically updated as units move around the space, which stops units from pathing into each other while stationary. Moving targets need a bit more work to have their copies of the list, snapshots of the moment when the move order first went out, be refreshed either periodically or when colliding with new targets. 
+
+![A screenshot of the game view with Gizmos drawn to show cyan pathfinding nodes and the path lines between them. A unit moving to a position behind another unit has a path traced ahead of it, showing it pathing around and behind the unit rather than straight through them.](/../assets/images/blog/0013/avoidance.png)
+
+Units also have some basic rules for ordering their positions around a shared formation entity, used for pathfinding with relative offests. I'm sure this will be a nightmare of edge cases and tweaking in the future, but at least they start out facing the right direction (sort of --- they also need to update their facing direction along the path, which is a WIP).
+
+![A screenshot of the game view with Gizmos showing, in cyan, pathfinding targets in front of several units lined up in formation. Each unit's target is offset from the central group target so that they march forward as a line perpendicular to their moving direction.](/../assets/images/blog/0013/formation.png)
+
+I'll keep it short and just mention one other change here, since a lot of other things were minor tweaks to the HUD and camera in preparation for splitting the view and input code. I've been reading up on Unity's InputSystem, which I opted for early in the project because of the abstractions that separate keybindings and control schemes from input events. However, while trying to fix one of the more apparent bugs with the UI, being able to click on the game world through it, the options for mixing UI and game pointer interactions are limited. I was used to having a solid solution for this in Godot, where Controls can consume inputs with mouse filter settings, but in Unity it seems like you have to poll and check cursor positions manually. After some testing, it seems like it is no longer possible to interact with the game through UI elements. Not much to show here but I can assure you that I've tried a lot of clicking, dragging, mouse cancelling etc. 
+
+Next up is actually populating the UI with some data, and to keep it simple, I'm planning on imitating RTS-style unit selection by allowing all those juicy bits of unit info, attack damage, range, LOS and whatever else, to be displayed on the bottom panel somehow. Once again leaning upon the wisdom of my RTS forebears, I'll probably just have the last selected unit's info displayed, although maybe an abbreviated group-icon list to pick from could be good for supporting units. I haven't figured out the scheme for displaying the main cast's info at a glance, since there should be something separate and probably persistent for the player-controlled major characters, but I'll cross that bridge when I come to it.
