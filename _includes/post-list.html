@@ -41,7 +41,7 @@
 
     const postCount = postList.childElementCount;
     
-    let page = 0, pageCount, postsPerPage;
+    let page = 0, pageCount, postsPerPage; // TODO: make current page persistent
     
     const setCurrentPage = (newPage) => {
       newPage = Math.min(Math.max(newPage, 0), pageCount-1);
