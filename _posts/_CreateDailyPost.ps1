@@ -26,3 +26,5 @@ if (!(Test-Path (Join-Path -Path $PSScriptRoot -ChildPath $Filename))) {
 else {
   Write-Host "Error: $Filename already exists in this directory!"
 }
+
+# TODO: create folder in images directory
